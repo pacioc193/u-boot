@@ -54,6 +54,10 @@ static int bootz_start(struct cmd_tbl *cmdtp, int flag, int argc,
 	}
 
 	ret = bootz_setup(images->ep, &zi_start, &zi_end);
+	images->os.start = zi_start;
+	images->os.image_start = images->ep;
+	images->os.end = zi_end;
+	images->os.image_len = zi_end - zi_start;
 	if (ret != 0)
 		return 1;
 
